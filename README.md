@@ -39,7 +39,7 @@ Number beautifier/namer
         <td>12.34567</td>
         <td>--</td>
         <td>2</td>
-        <td>12.35</td>
+        <td>12.34</td>
     </tr>
     <tr>
         <td>0.00004321234</td>
@@ -64,7 +64,7 @@ Number beautifier/namer
 
 ### Nomen.format
 
-`String Nomen.format(BigDecimal value, GroupingMode mode[, int decimalPlaces = 1]);`
+`String Nomen.format(BigDecimal value[, GroupingMode mode[, int decimalPlaces]]);`
 
 <table>
     <tr>
