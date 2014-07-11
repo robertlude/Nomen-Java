@@ -2,6 +2,11 @@
 
 Number beautifier/namer
 
+## Quick Use
+
+1. Use `git submodule add git@github.com:robertlude/Nomen-Java.git de/ertlu/rob/Nomen` at your Java project source root directory
+2. Call `Nomen.format(value)` from your code
+
 ## Examples
 
 <table>
@@ -12,40 +17,64 @@ Number beautifier/namer
         <th>Result</th>
     </tr>
     <tr>
-        <td>1998348.9931</td>
+        <td>123.456</td>
         <td>--</td>
         <td>--</td>
-        <td>1.998 million</td>
+        <td>123</td>
     </tr>
     <tr>
-        <td>19983489.931</td>
-        <td>--</td>
-        <td>--</td>
-        <td>19.98 million</td>
-    </tr>
-    <tr>
-        <td>199834899.31</td>
-        <td>--</td>
-        <td>--</td>
-        <td>199.8 million</td>
-    </tr>
-    <tr>
-        <td>1998348993.1</td>
-        <td>--</td>
-        <td>--</td>
-        <td>1.998 billion</td>
-    </tr>
-    <tr>
-        <td>12.34567</td>
+        <td>123.456</td>
         <td>--</td>
         <td>2</td>
-        <td>12.34</td>
+        <td>123.45</td>
     </tr>
     <tr>
-        <td>0.00004321234</td>
-        <td>SIPrefixAbbreviated</td>
+        <td>1234.567</td>
         <td>--</td>
-        <td>43.21&micro;</td>
+        <td>--</td>
+        <td>1.234 thousand</td>
+    </tr>
+    <tr>
+        <td>1234.567</td>
+        <td>--</td>
+        <td>2</td>
+        <td>1.234 thousand</td>
+    </tr>
+    <tr>
+        <td>12345.678</td>
+        <td>--</td>
+        <td>--</td>
+        <td>12.34 thousand</td>
+    </tr>
+    <tr>
+        <td>123456.789</td>
+        <td>--</td>
+        <td>--</td>
+        <td>123.4 thousand</td>
+    </tr>
+    <tr>
+        <td>1234567.89</td>
+        <td>--</td>
+        <td>--</td>
+        <td>1.234 million</td>
+    </tr>
+    <tr>
+        <td>1234567890.123</td>
+        <td>--</td>
+        <td>--</td>
+        <td>1.234 billion</td>
+    </tr>
+    <tr>
+        <td>1234567890.123</td>
+        <td><code>Nomen.EnglishLongScale</code></td>
+        <td>--</td>
+        <td>1.234 milliard</td>
+    </tr>
+    <tr>
+        <td>0.0000123456789</td>
+        <td><code>Nomen.SIPrefixAbbreviated</code></td>
+        <td>--</td>
+        <td>12.34&micro;</td>
     </tr>
 </table>
 
@@ -84,9 +113,32 @@ Number beautifier/namer
     </tr>
     <tr>
         <td><code>decimalPlaces</code></td>
-        <td>The number of maximum decimal places to display if `value` is less than `groupingMode.groupSize` and greater than or equal to 1</td>
+        <td>The number of maximum decimal places to display if <code>1 &lt; abs(value) &lt; groupingMode.groupSize</code></td>
         <td>0</td>
     </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Input</th>
+    <th>Output</th>
+  </tr>
+  <tr>
+    <td><code>0 == abs(value)</code></td>
+    <td><code>"0"</code> and appropriate label</td>
+  </tr>
+  <tr>
+    <td><code>abs(value) &lt; 1</code></td>
+    <td>4 significant digits and appropriate label
+  </tr>
+  <tr>
+    <td><code>1 &lt; abs(value) &lt; groupingMode.groupSize</code></td>
+    <td>Full precision truncated at specified decimal place and appropriate label</td>
+  </tr>
+  <tr>
+    <td><code>groupingMode.groupSize &lt; abs(value)</code></td>
+    <td>4 significant digits and appropriate label
+  </tr>
 </table>
 
 ### Nomen.GroupingMode
