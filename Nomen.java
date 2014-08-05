@@ -32,7 +32,7 @@ public class Nomen {
         return format(value, mode, 0);
     }
     public static String format(final BigDecimal value, final GroupingMode mode, final int decimalPlaces) {
-        if ( value.compareTo(BigDecimal.ZERO) == 0 ) return "0" + mode.labelMid;
+        if ( value.compareTo(BigDecimal.ZERO) == 0 ) return BigDecimal.ZERO.setScale(decimalPlaces).toString() + mode.labelMid;
 
         final BigDecimal lowerLimit = BigDecimal.ONE.scaleByPowerOfTen(-decimalPlaces);
         final String prefix = value.compareTo(BigDecimal.ZERO) < 0 ? "-" : "";
